@@ -1,16 +1,22 @@
-#!/usr/bin/env python3
-"""
-Empathetic Chatbot using Hugging Face API
-Simple terminal-based chatbot that detects emotions and responds empathetically
-"""
-
 import requests
 import os
 from dotenv import load_dotenv
 import random
 
-# Load environment variables from .env file
+# Load environment variables from .env file: HUGGINGFACE_TOKEN
 load_dotenv()
+
+# Description of Bot
+# Which tool did you use? Why?
+    # We used the Hugging Face API for emotion detection because it provides a modern, powerful, and easy-to-use 
+    # API for analyzing text and understanding the emotion.
+# How did you decide what responses to write?
+    # We generated responses based on the three given situations: Acknowledge, Suggest, and Reinforce.
+    # For simplicity, we just created three that will be randomly selected for each of the situations for every emotion.
+# What makes your chatbot empathic?
+    # Right now the bot is limited in how it can reply to the user but it can accurately detect the emotion based on the text
+    # and respond in a way that is appropriate for the situation rather than fully randomly selecting a response.
+    # If expanded to have more strategies and detectable words, the bot can be easily improved though it is somewhat rule-based at the moment.
 
 class ChatBot:
     def __init__(self):
@@ -49,9 +55,8 @@ class ChatBot:
 
     
     def get_response(self, emotion, text_input):
-        """Generate an empathetic response based on detected emotion and user input context"""
-        
-        # Analyze user input for context clues
+        # Select response based on detected emotion and user input context
+        # Analyze user input for specific words
         user_lower = text_input.lower()
         
         # For better empathy, the bot can choose different strategies based on words used
@@ -195,8 +200,7 @@ class ChatBot:
         return random.choice(emotion_responses[strategy])
     
     def chat(self):
-        """Main chat loop"""
-        print("Empathetic ChatBot")
+        print("Empathetic ChatBot :-)")
         print("Type 'quit' to end the conversation.")
         print("=" * 50)
         
