@@ -1,3 +1,11 @@
+"""
+Group 3:
+Escano, Ewan 
+Felipe, Gerard Christian
+Llanes, Andre
+Miranda, JM
+"""
+
 import requests
 import os
 from dotenv import load_dotenv
@@ -26,7 +34,7 @@ class ChatBot:
         
         # Emotion detection API that receives the text you give
         self.emotion_api_url = "https://api-inference.huggingface.co/models/j-hartmann/emotion-english-distilroberta-base"
-        # can return these emotions: sadness, joy, love, anger, fear, surprise, disgust, neutral
+        # can return these emotions: sadness, joy, anger, fear, surprise, disgust, neutral
         # The setup of the returned value is: {'label': 'anger', 'score': 0.004419783595949411}
 
     def detect_emotion(self, text):
@@ -63,121 +71,121 @@ class ChatBot:
         response_list = {
             "sadness": {
                 "acknowledge": [
-                    "I can hear that you're going through a really difficult time right now.",
-                    "It sounds like you're carrying a heavy emotional burden.",
-                    "I can feel the sadness in your words, and that's completely valid."
+                    "(acknowledge) I can hear that you're going through a really difficult time right now.",
+                    "(acknowledge) It sounds like you're carrying a heavy emotional burden.",
+                    "(acknowledge) I can feel the sadness in your words, and that's completely valid."
                 ],
                 "suggest": [
-                    "Sometimes when we're feeling this way, it helps to talk about what's weighing on your heart.",
-                    "Would it help to share what's been making you feel so down lately?",
-                    "Have you been able to reach out to anyone close to you about how you're feeling?"
+                    "(suggest) Sometimes when we're feeling this way, it helps to talk about what's weighing on your heart.",
+                    "(suggest) Would it help to share what's been making you feel so down lately?",
+                    "(suggest) Have you been able to reach out to anyone close to you about how you're feeling?"
                 ],
                 "reinforce": [
-                    "You don't have to go through this alone - I'm here to listen.",
-                    "Your feelings are completely valid, and it's okay to not be okay right now.",
-                    "Even in the darkest moments, please remember that this feeling won't last forever."
+                    "(reinforce) You don't have to go through this alone - I'm here to listen.",
+                    "(reinforce) Your feelings are completely valid, and it's okay to not be okay right now.",
+                    "(reinforce) Even in the darkest moments, please remember that this feeling won't last forever."
                 ]
             },
             "joy": {
                 "acknowledge": [
-                    "I can feel your excitement and happiness radiating through your words!",
-                    "It's wonderful to hear such positive energy from you!",
-                    "Your joy is absolutely contagious - thank you for sharing this moment!"
+                    "(acknowledge) I can feel your excitement and happiness radiating through your words!",
+                    "(acknowledge) It's wonderful to hear such positive energy from you!",
+                    "(acknowledge) Your joy is absolutely contagious - thank you for sharing this moment!"
                 ],
                 "suggest": [
-                    "This sounds like something worth celebrating! Tell me more about what happened.",
-                    "I'd love to hear all the details about what's making you so happy!",
-                    "What an amazing thing to experience! How are you planning to celebrate?"
+                    "(suggest) This sounds like something worth celebrating! Tell me more about what happened.",
+                    "(suggest) I'd love to hear all the details about what's making you so happy!",
+                    "(suggest) What an amazing thing to experience! How are you planning to celebrate?"
                 ],
                 "reinforce": [
-                    "Hold onto this feeling - you deserve all the happiness coming your way.",
-                    "These are the moments that make life beautiful. Savor every bit of it!",
-                    "Your happiness reminds me that there's so much good in the world."
+                    "(reinforce) Hold onto this feeling - you deserve all the happiness coming your way.",
+                    "(reinforce) These are the moments that make life beautiful. Savor every bit of it!",
+                    "(reinforce) Your happiness reminds me that there's so much good in the world."
                 ]
             },
             "anger": {
                 "acknowledge": [
-                    "I can sense your frustration, and it's completely understandable to feel this way.",
-                    "Your anger is valid - something has clearly upset you deeply.",
-                    "I hear how frustrated and upset you are right now."
+                    "(acknowledge) I can sense your frustration, and it's completely understandable to feel this way.",
+                    "(acknowledge) Your anger is valid - something has clearly upset you deeply.",
+                    "(acknowledge) I hear how frustrated and upset you are right now."
                 ],
                 "suggest": [
-                    "When we're feeling this angry, it might help to take a few deep breaths before we react.",
-                    "Would it help to talk through what happened that made you feel this way?",
-                    "Sometimes stepping away from the situation for a moment can give us clarity."
+                    "(suggest) When we're feeling this angry, it might help to take a few deep breaths before we react.",
+                    "(suggest) Would it help to talk through what happened that made you feel this way?",
+                    "(suggest) Sometimes stepping away from the situation for a moment can give us clarity."
                 ],
                 "reinforce": [
-                    "It's okay to feel angry - it shows that something important to you was affected.",
-                    "I'm here to listen without judgment while you work through these feelings.",
-                    "Your feelings matter, and I want to understand what's bothering you."
+                    "(reinforce) It's okay to feel angry - it shows that something important to you was affected.",
+                    "(reinforce) I'm here to listen without judgment while you work through these feelings.",
+                    "(reinforce) Your feelings matter, and I want to understand what's bothering you."
                 ]
             },
             "fear": {
                 "acknowledge": [
-                    "I can hear the worry and anxiety in what you're sharing with me.",
-                    "It's completely natural to feel scared or anxious about uncertain situations.",
-                    "Fear can be overwhelming, and I recognize how difficult this must be for you."
+                    "(acknowledge) I can hear the worry and anxiety in what you're sharing with me.",
+                    "(acknowledge) It's completely natural to feel scared or anxious about uncertain situations.",
+                    "(acknowledge) Fear can be overwhelming, and I recognize how difficult this must be for you."
                 ],
                 "suggest": [
-                    "When anxiety feels overwhelming, sometimes focusing on what we can control helps.",
-                    "Have you tried any grounding techniques when you feel this anxious?",
-                    "Would it help to break down what you're worried about into smaller, manageable pieces?"
+                    "(suggest) When anxiety feels overwhelming, sometimes focusing on what we can control helps.",
+                    "(suggest) Have you tried any grounding techniques when you feel this anxious?",
+                    "(suggest) Would it help to break down what you're worried about into smaller, manageable pieces?"
                 ],
                 "reinforce": [
-                    "You're braver than you think for facing these fears and talking about them.",
-                    "Remember that you've gotten through difficult times before, and you can get through this too.",
-                    "I'm here to support you through whatever you're facing."
+                    "(reinforce) You're braver than you think for facing these fears and talking about them.",
+                    "(reinforce) Remember that you've gotten through difficult times before, and you can get through this too.",
+                    "(reinforce) I'm here to support you through whatever you're facing."
                 ]
             },
             "surprise": {
                 "acknowledge": [
-                    "Wow, that sounds like it caught you completely off guard!",
-                    "I can imagine how unexpected and surprising that must have been!",
-                    "Life certainly has a way of throwing us curveballs, doesn't it?"
+                    "(acknowledge) Wow, that sounds like it caught you completely off guard!",
+                    "(acknowledge) I can imagine how unexpected and surprising that must have been!",
+                    "(acknowledge) Life certainly has a way of throwing us curveballs, doesn't it?"
                 ],
                 "suggest": [
-                    "How are you processing this unexpected news or event?",
-                    "Tell me more about how this surprise is affecting you.",
-                    "What's going through your mind now that this has happened?"
+                    "(suggest) How are you processing this unexpected news or event?",
+                    "(suggest) Tell me more about how this surprise is affecting you.",
+                    "(suggest) What's going through your mind now that this has happened?"
                 ],
                 "reinforce": [
-                    "Sometimes unexpected things can lead to wonderful opportunities.",
-                    "It's okay to feel unsettled by surprises - they can be a lot to process.",
-                    "Whatever this surprise brings, you have the strength to handle it."
+                    "(reinforce) Sometimes unexpected things can lead to wonderful opportunities.",
+                    "(reinforce) It's okay to feel unsettled by surprises - they can be a lot to process.",
+                    "(reinforce) Whatever this surprise brings, you have the strength to handle it."
                 ]
             },
             "disgust": {
                 "acknowledge": [
-                    "I can tell that something has really bothered or upset you.",
-                    "It sounds like you encountered something truly unpleasant.",
-                    "Your reaction is completely understandable - that does sound awful."
+                    "(acknowledge) I can tell that something has really bothered or upset you.",
+                    "(acknowledge) It sounds like you encountered something truly unpleasant.",
+                    "(acknowledge) Your reaction is completely understandable - that does sound awful."
                 ],
                 "suggest": [
-                    "Would it help to talk about what happened and how it made you feel?",
-                    "Sometimes sharing these unpleasant experiences can help us process them.",
-                    "Is there anything specific about this situation that's still bothering you?"
+                    "(suggest) Would it help to talk about what happened and how it made you feel?",
+                    "(suggest) Sometimes sharing these unpleasant experiences can help us process them.",
+                    "(suggest) Is there anything specific about this situation that's still bothering you?"
                 ],
                 "reinforce": [
-                    "It's perfectly normal to feel disgusted or repulsed by certain things.",
-                    "Your feelings about this are completely justified and valid.",
-                    "You don't have to keep those unpleasant feelings bottled up inside."
+                    "(reinforce) It's perfectly normal to feel disgusted or repulsed by certain things.",
+                    "(reinforce) Your feelings about this are completely justified and valid.",
+                    "(reinforce) You don't have to keep those unpleasant feelings bottled up inside."
                 ]
             },
             "neutral": {
                 "acknowledge": [
-                    "I'm here and ready to listen to whatever you'd like to share.",
-                    "Thank you for reaching out - what's on your mind today?",
-                    "I appreciate you taking the time to talk with me. How are you feeling?"
+                    "(acknowledge) I'm here and ready to listen to whatever you'd like to share.",
+                    "(acknowledge) Thank you for reaching out - what's on your mind today?",
+                    "(acknowledge) I appreciate you taking the time to talk with me. How are you feeling?"
                 ],
                 "suggest": [
-                    "Is there anything specific you'd like to talk about or explore together?",
-                    "What would be most helpful for you to discuss right now?",
-                    "How has your day been going so far?"
+                    "(suggest) Is there anything specific you'd like to talk about or explore together?",
+                    "(suggest) What would be most helpful for you to discuss right now?",
+                    "(suggest) How has your day been going so far?"
                 ],
                 "reinforce": [
-                    "I'm here to support you in whatever way you need.",
-                    "Your thoughts and feelings are always welcome here.",
-                    "Take your time - there's no pressure to share anything you're not ready to discuss."
+                    "(reinforce) I'm here to support you in whatever way you need.",
+                    "(reinforce) Your thoughts and feelings are always welcome here.",
+                    "(reinforce) Take your time - there's no pressure to share anything you're not ready to discuss."
                 ]
             }
         }
@@ -215,7 +223,8 @@ class ChatBot:
                 try:
                     emotion = self.detect_emotion(text_input)
                     response = self.get_response(emotion, text_input)
-                    
+
+                    print(f"Emotion Detected: {emotion}")
                     print(f"\nBot: {response}")
                     
                         
